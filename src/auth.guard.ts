@@ -8,14 +8,14 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY } from './decorators/IsPublic.decorator';
-import { UserService } from './apps/ms-users/modules/user/user.service';
+import FindUseActiveByIdUseCase from './apps/ms-users/modules/user/use-case/find-use-active-by-id.use-case';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     private jwtService: JwtService,
     private reflector: Reflector,
-    private userService: UserService,
+    private findUseActiveByIdUseCase: FindUseActiveByIdUseCase,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -36,7 +36,9 @@ export class AuthGuard implements CanActivate {
       const payload = await this.jwtService.verifyAsync(token);
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers
-      const userExits = await this.userService.findOne(payload.sub);
+      const userExits = await this.findUseActiveByIdUseCase.execute(
+        payload.sub,
+      );
 
       request['user'] = userExits;
     } catch {

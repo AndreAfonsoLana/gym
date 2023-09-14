@@ -7,45 +7,60 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { StudentsService } from './students.service';
+
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
+import CreateStudentUseCase from './use-case/create-student.use-case';
+import FindAllStudentUseCase from './use-case/find-all-student.use-case';
+import FindStudentUserOneUse from './use-case/find-student-user-one.use-case';
+import FindStudentFindOneUseCase from './use-case/find-student-find-one.use-case';
+import UpdateStudentUseCase from './use-case/update-student.use-case';
+import ActiveStudentUseCase from './use-case/active-student.use-case';
+import InactiveStudentUseCase from './use-case/inactive-student.use-case';
 
 @Controller('students')
 export class StudentsController {
-  constructor(private readonly studentsService: StudentsService) {}
+  constructor(
+    private readonly createStudentUseCase: CreateStudentUseCase,
+    private readonly findAllStudentUseCase: FindAllStudentUseCase,
+    private readonly findStudentUserOneUseCase: FindStudentUserOneUse,
+    private readonly findStudentFindOneUseCase: FindStudentFindOneUseCase,
+    private readonly updateStudentUseCase: UpdateStudentUseCase,
+    private readonly activeStudentUseCase: ActiveStudentUseCase,
+    private readonly inactiveStudentUseCase: InactiveStudentUseCase,
+  ) {}
 
   @Post()
   create(@Body() createStudentDto: CreateStudentDto) {
-    return this.studentsService.create(createStudentDto as any);
+    return this.createStudentUseCase.execute(createStudentDto as any);
   }
 
   @Get()
   findAll() {
-    return this.studentsService.findAll();
+    return this.findAllStudentUseCase.execute();
   }
 
   @Get('/user/:id')
   findUserOne(@Param('id') idUser: string) {
-    return this.studentsService.findUserOne(+idUser);
+    return this.findStudentUserOneUseCase.execute(+idUser);
   }
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.studentsService.findOne(+id);
+    return this.findStudentFindOneUseCase.execute(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(+id, updateStudentDto);
+    return this.updateStudentUseCase.execute(+id, updateStudentDto);
   }
 
   @Patch(':id/active')
   active(@Param('id') id: string) {
-    return this.studentsService.active(+id);
+    return this.activeStudentUseCase.execute(+id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.studentsService.inactive(+id);
+    return this.inactiveStudentUseCase.execute(+id);
   }
 }
