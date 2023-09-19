@@ -40,7 +40,7 @@ export class StudentsController {
     return this.findAllStudentUseCase.execute();
   }
 
-  @Get('/user/:id')
+  @Get(':id/user/')
   findUserOne(@Param('id') idUser: string) {
     return this.findStudentUserOneUseCase.execute(+idUser);
   }

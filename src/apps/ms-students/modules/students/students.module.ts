@@ -9,9 +9,11 @@ import FindStudentFindOneUseCase from './use-case/find-student-find-one.use-case
 import UpdateStudentUseCase from './use-case/update-student.use-case';
 import ActiveStudentUseCase from './use-case/active-student.use-case';
 import InactiveStudentUseCase from './use-case/inactive-student.use-case';
+import { MeStudentController } from './me-student.controler';
+import UpdateMeStudentUseCase from './use-case/update-me-student.use-case';
 
 @Module({
-  controllers: [StudentsController],
+  controllers: [StudentsController, MeStudentController],
   providers: [
     PrismaService,
     UserExternalService,
@@ -20,6 +22,7 @@ import InactiveStudentUseCase from './use-case/inactive-student.use-case';
     FindStudentUserOneUse,
     FindStudentFindOneUseCase,
     UpdateStudentUseCase,
+    UpdateMeStudentUseCase,
     ActiveStudentUseCase,
     InactiveStudentUseCase,
   ],

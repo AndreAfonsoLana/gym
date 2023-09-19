@@ -15,10 +15,14 @@ export default class FindStudentFindOneUseCase {
       },
     });
 
-    const user = await this.userExternalService.getUser(responseStudent.idUser);
+    if (responseStudent) {
+      const user = await this.userExternalService.getUser(
+        responseStudent.idUser,
+      );
 
-    const response = { ...responseStudent, user };
+      return { ...responseStudent, user };
+    }
 
-    return response;
+    return responseStudent;
   }
 }
