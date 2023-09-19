@@ -42,13 +42,13 @@ export class UserController {
     return this.findAllUserUseCase.execute();
   }
 
+  @Get(':id/student')
+  findStudentsOne(@Param('id') id: string) {
+    return this.findStudentsOneUseCase.execute(+id);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.findOneUserUseCase.execute(+id);
-  }
-  @Get(':id/student/')
-  findStudentsOne(@Param('id') id: string) {
-    return this.findStudentsOneUseCase.execute(+id);
   }
 
   @Patch(':id')

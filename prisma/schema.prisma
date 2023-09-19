@@ -27,3 +27,40 @@ model Student {
   idUser   Int?
   isActive Boolean @default(true)
 }
+
+model Muscle {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique()
+  isActive Boolean @default(true)
+}
+
+model Exercise {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique()
+  isActive Boolean @default(true)
+}
+
+model workout {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique()
+  studentId Int
+  order     Int
+  isActive  Boolean @default(true)
+}
+
+model workoutExercise {
+  id         Int     @id @default(autoincrement())
+  workoutId  Int
+  exerciseId Int
+  order      Int
+  isActive   Boolean @default(true)
+}
+
+model workoutHistory {
+  id         Int      @id @default(autoincrement())
+  studentId  Int
+  exerciseId Int
+  startDate  DateTime
+  endDate    DateTime
+  isActive   Boolean  @default(true)
+}

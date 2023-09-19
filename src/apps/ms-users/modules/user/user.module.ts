@@ -10,14 +10,17 @@ import UpdateUserUseCase from './use-case/update-user.use-case';
 import ActiveUserUseCase from './use-case/active-user.use-case';
 import InactiveUserUseCase from './use-case/inactive-user.use-case';
 import LoginUserUseCase from './use-case/login-user.use-case';
+import { MeUserController } from './me-user.controler';
+import FindStudentUserOneUse from 'src/apps/ms-students/modules/students/use-case/find-student-user-one.use-case';
 @Module({
-  controllers: [UserController],
+  controllers: [UserController, MeUserController],
   providers: [
     PrismaService,
     StudentsExternalService,
     CreateUserUseCase,
     FindAllUserUseCase,
     FindStudentsOneUseCase,
+    FindStudentUserOneUse,
     FindOneUserUseCase,
     UpdateUserUseCase,
     ActiveUserUseCase,

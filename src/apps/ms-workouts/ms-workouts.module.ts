@@ -1,3 +1,4 @@
 import { Module } from '@nestjs/common';
-@Module({ imports: [] })
+import { muscleModule } from './modules/muscle/muscle.module';
+@Module({ imports: [muscleModule] })
 export class MsWorkOutsModule {}

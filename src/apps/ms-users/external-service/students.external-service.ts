@@ -15,7 +15,7 @@ export default class StudentsExternalService {
   }
   async getStudentsUser(idUser: number) {
     const response = await axios.get(
-      'http://localhost:3020/students/user/' + idUser,
+      'http://localhost:3020/students/' + idUser + '/user',
       {
         headers: { Authorization: this.getAuthorization() },
       },

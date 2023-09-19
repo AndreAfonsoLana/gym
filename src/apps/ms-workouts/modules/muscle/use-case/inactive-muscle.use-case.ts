@@ -2,15 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
-export default class FindOneUserUseCase {
+export default class InactiveMuscleUseCase {
   constructor(private prisma: PrismaService) {}
   async execute(id: number) {
-    const user = await this.prisma.user.findFirst({
+    return this.prisma.muscle.update({
+      data: { isActive: false },
       where: {
         id,
       },
     });
-    delete user.password;
-    return user;
   }
 }
