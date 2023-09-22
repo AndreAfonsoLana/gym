@@ -5,10 +5,12 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export default class FindStudentUserOneUse {
   constructor(private prisma: PrismaService) {}
   async execute(idUser: number) {
-    return await this.prisma.student.findFirst({
+    const result = await this.prisma.student.findFirst({
       where: {
         idUser,
       },
     });
+
+    return result;
   }
 }
