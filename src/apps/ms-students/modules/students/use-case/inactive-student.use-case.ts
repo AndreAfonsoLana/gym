@@ -5,8 +5,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export default class InactiveStudentUseCase {
   constructor(private prisma: PrismaService) {}
 
-  execute(id: number) {
-    return this.prisma.student.update({
+  async execute(id: number) {
+    return await this.prisma.student.update({
       data: { isActive: false },
       where: {
         id,

@@ -12,6 +12,7 @@ import InactiveUserUseCase from './use-case/inactive-user.use-case';
 import LoginUserUseCase from './use-case/login-user.use-case';
 import { MeUserController } from './me-user.controler';
 import FindStudentUserOneUse from 'src/apps/ms-students/modules/students/use-case/find-student-user-one.use-case';
+import WorkoutHistoryExternalService from 'src/apps/ms-students/external-service/workout-history-external-service';
 @Module({
   controllers: [UserController, MeUserController],
   providers: [
@@ -26,6 +27,7 @@ import FindStudentUserOneUse from 'src/apps/ms-students/modules/students/use-cas
     ActiveUserUseCase,
     InactiveUserUseCase,
     LoginUserUseCase,
+    WorkoutHistoryExternalService,
   ],
 })
 export class UserModule {}

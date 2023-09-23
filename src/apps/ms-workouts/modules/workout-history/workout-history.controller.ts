@@ -12,6 +12,7 @@ import { UpdateWorkoutHistoryDto } from './dto/update-workout-history.dto';
 import { CreateWorkoutHistoryUseCase } from './use-case/create-workout-history.use-case';
 import { FindAllWorkoutHistoryUseCase } from './use-case/find-all-workout-history.use-case';
 import { FindOneWorkoutHistoryUseCase } from './use-case/find-one-workout-history.use-case';
+import { FindStudentWorkoutHistoryUseCase } from './use-case/find-student-workout-history.use-case';
 import { InactiveWorkoutHistoryUseCase } from './use-case/inactive-workout-history.use-case';
 import { UpdateWorkoutHistoryUseCase } from './use-case/update-workout-history.use-case';
 
@@ -23,6 +24,7 @@ export class WorkoutHistoryController {
     private readonly findOneWorkoutHistoryUseCase: FindOneWorkoutHistoryUseCase,
     private readonly updateWorkoutHistoryUseCase: UpdateWorkoutHistoryUseCase,
     private readonly inactiveWorkoutHistoryUseCase: InactiveWorkoutHistoryUseCase,
+    private readonly findStudentWorkoutHistoryUseCase: FindStudentWorkoutHistoryUseCase,
   ) {}
   @Post()
   create(@Body() createdWorkoutHistoryDto: CreateWorkoutHistoryDto) {
@@ -33,6 +35,10 @@ export class WorkoutHistoryController {
   @Get()
   findAll() {
     return this.findAllWorkoutHistoryUseCase.execute();
+  }
+  @Get('/student/:id')
+  findStudent(@Param('id') id: string) {
+    return this.findStudentWorkoutHistoryUseCase.execute(+id);
   }
   @Get(':id')
   findOne(@Param('id') id: string) {

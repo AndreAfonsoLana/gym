@@ -11,6 +11,7 @@ import ActiveStudentUseCase from './use-case/active-student.use-case';
 import InactiveStudentUseCase from './use-case/inactive-student.use-case';
 import { MeStudentController } from './me-student.controler';
 import UpdateMeStudentUseCase from './use-case/update-me-student.use-case';
+import WorkoutHistoryExternalService from '../../external-service/workout-history-external-service';
 
 @Module({
   controllers: [StudentsController, MeStudentController],
@@ -25,6 +26,7 @@ import UpdateMeStudentUseCase from './use-case/update-me-student.use-case';
     UpdateMeStudentUseCase,
     ActiveStudentUseCase,
     InactiveStudentUseCase,
+    WorkoutHistoryExternalService,
   ],
 })
 export class StudentsModule {}
